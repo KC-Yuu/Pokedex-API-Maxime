@@ -1,5 +1,6 @@
+<h1 class="text-3xl font-bold mb-6">Pokédex - Première Génération</h1>
+
 <%= form_with url: export_pokemons_path(format: :csv), method: :get, local: true, class: "container mb-4 w-full mx-auto" do %>
-  <h1 class="text-3xl font-bold mb-6 text-center">Pokédex - Première Génération</h1>
   <div class="overflow-x-auto w-full">
     <table class="min-w-full bg-white border border-gray-300">
       <thead>
