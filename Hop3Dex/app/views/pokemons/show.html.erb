@@ -1,53 +1,100 @@
-<%= image_tag @pokemon.dig(:sprites, :regular), alt: @pokemon.dig(:name, :fr), class: "w-32 h-32" %>
-<h1 class="text-4xl font-bold"><%= @pokemon.dig(:name, :fr) %> (ID: <%= @pokemon[:pokedex_id] %>)</h1>
-<p class="text-xl"><strong>Category:</strong> <%= @pokemon[:category] %></p>
-<p class="text-xl"><strong>Height:</strong> <%= @pokemon[:height] %></p>
-<p class="text-xl"><strong>Weight:</strong> <%= @pokemon[:weight] %></p>
-<p class="text-xl"><strong>Generation:</strong> <%= @pokemon[:generation] %></p>
+<% background_style = gradient_background_for_types(@pokemon[:types]) %>
+<div class="container mx-auto p-4">
+  <div class="bg-white shadow-lg rounded-lg overflow-hidden" style="<%= background_style %>">
+    <div class="flex justify-between items-center p-4 bg-gray-200 bg-opacity-75">
+      <div class="w-1/2">
+        <h1 class="text-4xl font-bold"><%= @pokemon.dig(:name, :fr) %> (N°<%= @pokemon[:pokedex_id] %>)</h1>
+        <p class="text-xl mt-2"><strong>Catégorie:</strong> <%= @pokemon[:category] %></p>
+        <p class="text-xl mt-2"><strong>Taille:</strong> <%= @pokemon[:height] %></p>
+        <p class="text-xl mt-2"><strong>Poids:</strong> <%= @pokemon[:weight] %></p>
+        <p class="text-xl mt-2"><strong>Génération:</strong> <%= @pokemon[:generation] %></p>
+      </div>
+      <div class="w-1/2 flex items-center space-x-52">
+        <div class="text-center">
+          <%= image_tag @pokemon.dig(:sprites, :regular), alt: @pokemon.dig(:name, :fr), class: "w-44 h-auto" %>
+          <p class="text-gray-700 mt-2">Normal</p>
+        </div>
+        <% if @pokemon.dig(:sprites, :shiny) %>
+          <div class="text-center">
+            <%= image_tag @pokemon.dig(:sprites, :shiny), alt: "Shiny " + @pokemon.dig(:name, :fr), class: "w-44 h-auto" %>
+            <p class="text-gray-700 mt-2">Shiny</p>
+          </div>
+        <% end %>
+      </div>
+    </div>
+    <div class="p-4">
+      <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+  <!-- Stats Section -->
+      <div>
+        <h2 class="text-2xl font-bold mb-2">Stats</h2>
+        <ul class="space-y-1">
+          <li>HP: <%= @pokemon.dig(:stats, :hp) %></li>
+          <li>Attack: <%= @pokemon.dig(:stats, :atk) %></li>
+          <li>Defense: <%= @pokemon.dig(:stats, :def) %></li>
+          <li>Special Attack: <%= @pokemon.dig(:stats, :spe_atk) %></li>
+          <li>Special Defense: <%= @pokemon.dig(:stats, :spe_def) %></li>
+          <li>Speed: <%= @pokemon.dig(:stats, :vit) %></li>
+        </ul>
+      </div>
 
-<h2 class="text-2xl mt-4">Types</h2>
-<ul>
-  <% @pokemon[:types].each do |type| %>
-    <li><%= image_tag type[:image], alt: type[:name], class: "w-12 h-12 inline" %> <%= type[:name] %></li>
-  <% end %>
-</ul>
+      <!-- Types and Talents Section -->
+      <div class="grid grid-cols-1 gap-4">
+        <!-- Types Section -->
+        <div>
+          <h2 class="text-2xl font-bold mb-2">Types</h2>
+          <ul class="flex space-x-4">
+            <% @pokemon[:types].each do |type| %>
+              <li class="flex flex-col items-center">
+                <%= image_tag type[:image], alt: type[:name], class: "w-12 h-12 border-2" %>
+                <span class="text-center mt-1"><%= type[:name] %></span>
+              </li>
+            <% end %>
+          </ul>
+        </div>
 
-<h2 class="text-2xl mt-4">Talents</h2>
-<ul>
-  <% @pokemon[:talents].each do |talent| %>
-    <li><%= talent[:name] %> <%= "(TC)" if talent[:tc] %></li>
-  <% end %>
-</ul>
+        <!-- Talents Section -->
+          <div>
+            <h2 class="text-2xl font-bold mb-2">Talents</h2>
+            <ul class="flex space-x-10">
+              <% @pokemon[:talents].each do |talent| %>
+                <li class="text-lg"><%= talent[:name] %> <%= "(TC)" if talent[:tc] %></li>
+              <% end %>
+            </ul>
+          </div>
+        </div>
 
-<h2 class="text-2xl mt-4">Stats</h2>
-<ul>
-  <li>HP: <%= @pokemon.dig(:stats, :hp) %></li>
-  <li>Attack: <%= @pokemon.dig(:stats, :atk) %></li>
-  <li>Defense: <%= @pokemon.dig(:stats, :def) %></li>
-  <li>Special Attack: <%= @pokemon.dig(:stats, :spe_atk) %></li>
-  <li>Special Defense: <%= @pokemon.dig(:stats, :spe_def) %></li>
-  <li>Speed: <%= @pokemon.dig(:stats, :vit) %></li>
-</ul>
+        <!-- Resistances Section -->
+        <div>
+          <h2 class="text-2xl font-bold mb-2">Resistances</h2>
+          <ul class="grid grid-cols-2 md:grid-cols-3 gap-4">
+            <% @pokemon[:resistances].each do |resistance| %>
+              <li class="flex items-center">
+                <%= image_tag type_image(resistance[:name]), alt: resistance[:name], class: "w-8 h-8 inline mr-2 border-2" %>
+                <%= resistance[:name] %>: <%= resistance[:multiplier] %>
+              </li>
+            <% end %>
+          </ul>
+        </div>
 
-<h2 class="text-2xl mt-4">Resistances</h2>
-<ul>
-  <% @pokemon[:resistances].each do |resistance| %>
-    <li><%= resistance[:name] %>: <%= resistance[:multiplier] %></li>
-  <% end %>
-</ul>
 
-<h2 class="text-2xl mt-4">Evolutions</h2>
-<ul>
-  <% if @pokemon.dig(:evolution, :pre).is_a?(Array) %>
-    <% @pokemon.dig(:evolution, :pre).each do |evolution| %>
-      <li>Previous: <%= evolution[:name] %> (ID: <%= evolution[:pokedex_id] %>)</li>
-    <% end %>
-  <% elsif @pokemon.dig(:evolution, :pre) %>
-    <li>Previous: <%= @pokemon.dig(:evolution, :pre, :name) %> (ID: <%= @pokemon.dig(:evolution, :pre, :pokedex_id) %>)</li>
-  <% end %>
-  <% if @pokemon.dig(:evolution, :next).is_a?(Array) %>
-    <% @pokemon.dig(:evolution, :next).each do |evolution| %>
-      <li>Next: <%= evolution[:name] %> (ID: <%= evolution[:pokedex_id] %>)</li>
-    <% end %>
-  <% end %>
-</ul>
+      <!-- Evolutions Section -->
+      <div class="mt-4">
+        <h2 class="text-2xl font-bold mb-2">Evolutions</h2>
+        <ul class="space-y-1">
+          <% if @pokemon.dig(:evolution, :pre).is_a?(Array) %>
+            <% @pokemon.dig(:evolution, :pre).each do |evolution| %>
+              <li>Previous: <%= evolution[:name] %> (ID: <%= evolution[:pokedex_id] %>)</li>
+            <% end %>
+          <% elsif @pokemon.dig(:evolution, :pre) %>
+            <li>Previous: <%= @pokemon.dig(:evolution, :pre, :name) %> (ID: <%= @pokemon.dig(:evolution, :pre, :pokedex_id) %>)</li>
+          <% end %>
+          <% if @pokemon.dig(:evolution, :next).is_a?(Array) %>
+            <% @pokemon.dig(:evolution, :next).each do |evolution| %>
+              <li>Next: <%= evolution[:name] %> (ID: <%= evolution[:pokedex_id] %>)</li>
+            <% end %>
+          <% end %>
+        </ul>
+      </div>
+    </div>
+  </div>
+</div>

@@ -1,6 +1,9 @@
 <header class="mt-32">
   <div class="flex justify-between fixed top-0 left-0 right-0 bg-white shadow-md z-50 p-6">
   <h1 class="text-4xl font-bold mb-6">Hop3Dex - Première Génération</h1>
+
+  <div class="flex">
+  <%= submit_tag "Export to CSV", class: "bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded mr-10" %>
   <%= form_with url: pokemons_path, method: :get, class: 'flex items-center justify-center mt-5' do %>
     <%= text_field_tag :query, params[:query], placeholder: 'Rechercher un pokémon', class: 'w-full max-w-sm rounded-md
     border-gray-300 shadow-sm px-4 py-2 outline-none focus:ring-yellow-500 focus:border-yellow-500 mr-4' %>
@@ -8,5 +11,6 @@
     text-sm font-medium text-white bg-yellow-600 hover:bg-yellow-700 focus:outline-none focus:ring-2 focus:ring-offset-2
     focus:ring-yellow-500' %>
   <% end %>
+  </div>
 </div>
 </header>

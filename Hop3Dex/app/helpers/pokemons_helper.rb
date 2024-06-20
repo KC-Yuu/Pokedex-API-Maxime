@@ -48,4 +48,29 @@ module PokemonsHelper
 
     "background: linear-gradient(to right, #{primary_color}, #{secondary_color});"
   end
+
+  def type_image(type_name)
+    type_images = {
+      "Normal" => "https://raw.githubusercontent.com/Yarkis01/TyraDex/images/types/normal.png",
+      "Feu" => "https://raw.githubusercontent.com/Yarkis01/TyraDex/images/types/feu.png",
+      "Eau" => "https://raw.githubusercontent.com/Yarkis01/TyraDex/images/types/eau.png",
+      "Électrik" => "https://raw.githubusercontent.com/Yarkis01/TyraDex/images/types/electrik.png",
+      "Plante" => "https://raw.githubusercontent.com/Yarkis01/TyraDex/images/types/plante.png",
+      "Glace" => "https://raw.githubusercontent.com/Yarkis01/TyraDex/images/types/glace.png",
+      "Combat" => "https://raw.githubusercontent.com/Yarkis01/TyraDex/images/types/combat.png",
+      "Poison" => "https://raw.githubusercontent.com/Yarkis01/TyraDex/images/types/poison.png",
+      "Sol" => "https://raw.githubusercontent.com/Yarkis01/TyraDex/images/types/sol.png",
+      "Vol" => "https://raw.githubusercontent.com/Yarkis01/TyraDex/images/types/vol.png",
+      "Psy" => "https://raw.githubusercontent.com/Yarkis01/TyraDex/images/types/psy.png",
+      "Insecte" => "https://raw.githubusercontent.com/Yarkis01/TyraDex/images/types/insecte.png",
+      "Roche" => "https://raw.githubusercontent.com/Yarkis01/TyraDex/images/types/roche.png",
+      "Spectre" => "https://raw.githubusercontent.com/Yarkis01/TyraDex/images/types/spectre.png",
+      "Dragon" => "https://raw.githubusercontent.com/Yarkis01/TyraDex/images/types/dragon.png",
+      "Ténèbres" => "https://raw.githubusercontent.com/Yarkis01/TyraDex/images/types/tenebres.png",
+      "Acier" => "https://raw.githubusercontent.com/Yarkis01/TyraDex/images/types/acier.png",
+      "Fée" => "https://raw.githubusercontent.com/Yarkis01/TyraDex/images/types/fee.png"
+    }
+    type_images[type_name] || ""
+  end
+
 end
