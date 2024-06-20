@@ -1,0 +1,31 @@
+<% primary_type = pokemon[:types].first[:name] %>
+<% background_class = background_class_for_type(primary_type) %>
+<div class="shadow-lg rounded-lg overflow-hidden m-4 relative z-0">
+  <div class="<%= background_class %> bg-opacity-50 absolute inset-0"></div>
+  <div class="relative z-10 p-4">
+    <div class="flex justify-between items-center p-4 bg-gray-200 bg-opacity-75 rounded-t-lg">
+      <div class="flex items-center">
+        <%= check_box_tag "pokemon_ids[]", pokemon[:pokedex_id], @selected_pokemons.include?(pokemon[:pokedex_id]), class: "mr-2" %>
+        <h2 class="text-xl font-bold"><%= pokemon.dig(:name, :fr) %></h2>
+      </div>
+      <span class="text-gray-600">ID: <%= pokemon[:pokedex_id] %></span>
+    </div>
+    <div class="flex justify-center items-center p-4 bg-opacity-75 space-x-4">
+      <div class="text-center">
+        <%= image_tag pokemon.dig(:sprites, :regular), loading: 'lazy', class: "w-32 h-32" if pokemon.dig(:sprites, :regular) %>
+        <p class="text-gray-700 mt-2">Normal</p>
+      </div>
+      <div class="text-center">
+        <%= image_tag pokemon.dig(:sprites, :shiny), loading: 'lazy', class: "w-32 h-32" if pokemon.dig(:sprites, :shiny) %>
+        <p class="text-gray-700 mt-2">Shiny</p>
+      </div>
+    </div>
+    <div class="flex justify-center space-x-2 mt-4 bg-opacity-75">
+      <% if pokemon[:types] %>
+        <% pokemon[:types].each do |type| %>
+          <%= image_tag type[:image], alt: type[:name], loading: 'lazy', class: "w-12 h-12" %>
+        <% end %>
+      <% end %>
+    </div>
+  </div>
+</div>
