@@ -13,8 +13,11 @@
 
   <body>
     <main class="container mx-auto">
-    <%= render 'shared/header' %>
-    <%= yield %>
+      <%= render 'shared/header' %>
+      <%= yield %>
     </main>
+
+    <%= javascript_include_tag "application", "data-turbo-track": "reload" %>
+    <%= javascript_include_tag "scripts/checkbox_click", "data-turbo-track": "reload" %>
   </body>
 </html>
