@@ -1,10 +1,9 @@
 Rails.application.routes.draw do
-  resources :pokemons do
+  resources :pokemons, only: [:index, :show] do
     collection do
-      get 'export', to: 'pokemons#export'
+      get :export, defaults: { format: :csv }
     end
   end
-  root 'pokemons#index'
 
-  get 'search', to: 'pokemons#search'
+  root "pokemons#index"
 end

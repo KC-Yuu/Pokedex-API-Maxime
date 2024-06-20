@@ -1,5 +1,5 @@
 <div class="mb-5">
-<%= image_tag("Logo-Hop3Dex.png", alt: "Logo", class: "w-80 h-auto mx-auto") %>
+  <%= image_tag("Logo-Hop3Dex.png", alt: "Logo", class: "w-80 h-auto mx-auto") %>
 </div>
 
 <%= form_with url: export_pokemons_path(format: :csv), method: :get, local: true, class: "container mb-20 w-full mx-auto" do %>

@@ -1,0 +1,53 @@
+<%= image_tag @pokemon.dig(:sprites, :regular), alt: @pokemon.dig(:name, :fr), class: "w-32 h-32" %>
+<h1 class="text-4xl font-bold"><%= @pokemon.dig(:name, :fr) %> (ID: <%= @pokemon[:pokedex_id] %>)</h1>
+<p class="text-xl"><strong>Category:</strong> <%= @pokemon[:category] %></p>
+<p class="text-xl"><strong>Height:</strong> <%= @pokemon[:height] %></p>
+<p class="text-xl"><strong>Weight:</strong> <%= @pokemon[:weight] %></p>
+<p class="text-xl"><strong>Generation:</strong> <%= @pokemon[:generation] %></p>
+
+<h2 class="text-2xl mt-4">Types</h2>
+<ul>
+  <% @pokemon[:types].each do |type| %>
+    <li><%= image_tag type[:image], alt: type[:name], class: "w-12 h-12 inline" %> <%= type[:name] %></li>
+  <% end %>
+</ul>
+
+<h2 class="text-2xl mt-4">Talents</h2>
+<ul>
+  <% @pokemon[:talents].each do |talent| %>
+    <li><%= talent[:name] %> <%= "(TC)" if talent[:tc] %></li>
+  <% end %>
+</ul>
+
+<h2 class="text-2xl mt-4">Stats</h2>
+<ul>
+  <li>HP: <%= @pokemon.dig(:stats, :hp) %></li>
+  <li>Attack: <%= @pokemon.dig(:stats, :atk) %></li>
+  <li>Defense: <%= @pokemon.dig(:stats, :def) %></li>
+  <li>Special Attack: <%= @pokemon.dig(:stats, :spe_atk) %></li>
+  <li>Special Defense: <%= @pokemon.dig(:stats, :spe_def) %></li>
+  <li>Speed: <%= @pokemon.dig(:stats, :vit) %></li>
+</ul>
+
+<h2 class="text-2xl mt-4">Resistances</h2>
+<ul>
+  <% @pokemon[:resistances].each do |resistance| %>
+    <li><%= resistance[:name] %>: <%= resistance[:multiplier] %></li>
+  <% end %>
+</ul>
+
+<h2 class="text-2xl mt-4">Evolutions</h2>
+<ul>
+  <% if @pokemon.dig(:evolution, :pre).is_a?(Array) %>
+    <% @pokemon.dig(:evolution, :pre).each do |evolution| %>
+      <li>Previous: <%= evolution[:name] %> (ID: <%= evolution[:pokedex_id] %>)</li>
+    <% end %>
+  <% elsif @pokemon.dig(:evolution, :pre) %>
+    <li>Previous: <%= @pokemon.dig(:evolution, :pre, :name) %> (ID: <%= @pokemon.dig(:evolution, :pre, :pokedex_id) %>)</li>
+  <% end %>
+  <% if @pokemon.dig(:evolution, :next).is_a?(Array) %>
+    <% @pokemon.dig(:evolution, :next).each do |evolution| %>
+      <li>Next: <%= evolution[:name] %> (ID: <%= evolution[:pokedex_id] %>)</li>
+    <% end %>
+  <% end %>
+</ul>

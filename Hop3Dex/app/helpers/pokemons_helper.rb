@@ -41,6 +41,8 @@ module PokemonsHelper
   end
 
   def gradient_background_for_types(types)
+    return 'background: #e2e8f0;' if types.nil? || types.empty?
+
     primary_color = color_for_type(types.first[:name])
     secondary_color = types.second ? color_for_type(types.second[:name]) : primary_color
 
