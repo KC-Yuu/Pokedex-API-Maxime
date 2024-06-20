@@ -1,0 +1,49 @@
+<div class="flex mt-10 mb-5 justify-between">
+<h1 class="text-4xl font-bold mb-6">Pokédex - Première Génération</h1>
+      <form action="/search" method="get" class="flex mx-right">
+        <input type="text" name="q" placeholder="Rechercher..." class="px-2 py-1 border rounded-md">
+        <button type="submit" class="ml-2 px-2 py-1 bg-blue-500 text-white rounded-md">Search</button>
+      </form>
+</div>
+
+<%= form_with url: export_pokemons_path(format: :csv), method: :get, local: true, class: "container mb-4 w-full mx-auto mb-20" do %>
+  <div class="overflow-x-auto w-full">
+    <table class="min-w-full bg-white border border-gray-300">
+      <thead>
+        <tr class="bg-gray-200 text-gray-600 uppercase text-sm leading-normal">
+          <th class="py-3 px-6 text-left">Select</th>
+          <th class="py-3 px-6 text-left">Pokedex ID</th>
+          <th class="py-3 px-6 text-left">Name</th>
+          <th class="py-3 px-6 text-center">Sprite</th>
+          <th class="py-3 px-6 text-left">Types</th>
+        </tr>
+      </thead>
+      <tbody class="text-gray-600 text-sm font-light">
+        <% @pokemons.each do |pokemon| %>
+          <tr class="border-b border-gray-200 hover:bg-gray-100">
+            <td class="py-3 px-6 text-left"><%= check_box_tag "pokemon_ids[]", pokemon[:pokedex_id] %></td>
+            <td class="py-3 px-6 text-left"><%= pokemon[:pokedex_id] %></td>
+            <td class="py-3 px-6 text-left"><%= pokemon.dig(:name, :fr) %></td>
+            <td class="flex py-3 px-10">
+              <%= image_tag pokemon.dig(:sprites, :regular), loading: 'lazy', class: "w-32 h-32" if pokemon.dig(:sprites, :regular) %>
+              <%= image_tag pokemon.dig(:sprites, :shiny), leading: 'lazy', class: "w-32 h32" if pokemon.dig(:sprites, :shiny) %>
+            </td>
+            <td class="py-3 px-6 text-left">
+              <% if pokemon[:types] %>
+                <div class="flex space-x-2">
+                  <% pokemon[:types].each do |type| %>
+                    <%= image_tag type[:image], alt: type[:name], loading: 'lazy', class: "w-12 h-12" %>
+                  <% end %>
+                </div>
+              <% end %>
+            </td>
+          </tr>
+        <% end %>
+      </tbody>
+    </table>
+  </div>
+
+  <div class="mt-4 text-center">
+    <%= submit_tag "Export to CSV", class: "bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded" %>
+  </div>
+<% end %>
