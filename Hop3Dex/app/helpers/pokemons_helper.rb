@@ -1,26 +1,49 @@
 module PokemonsHelper
-  def background_class_for_type(type)
+  def color_for_type(type)
     case type.downcase
     when 'feu'
-      'bg-red-500'
+      '#e62829'
     when 'eau'
-      'bg-blue-500'
+      '#4299e1'
     when 'plante'
-      'bg-green-500'
+      '#3fa129'
     when 'électrik'
-      'bg-yellow-500'
+      '#fac000'
     when 'psy'
-      'bg-purple-500'
+      '#ef4179'
     when 'glace'
-      'bg-blue-300'
+      '#3fd8ff'
     when 'dragon'
-      'bg-indigo-700'
-    when 'ténèbres'
-      'bg-gray-800'
+      '#5061e1'
+    when 'spectre'
+      '#704170'
     when 'fée'
-      'bg-pink-400'
+      '#ef71ef'
+    when 'insecte'
+      '#91a119'
+    when 'normal'
+      '#9fa19f'
+    when 'vol'
+      '#81b9ef'
+    when 'poison'
+      '#8f41cb'
+    when 'sol'
+      '#915121'
+    when 'combat'
+      '#ff8000'
+    when 'roche'
+      '#afa981'
+    when 'acier'
+      '#60a1b8'
     else
-      'bg-gray-200'
+      '#e2e8f0'
     end
+  end
+
+  def gradient_background_for_types(types)
+    primary_color = color_for_type(types.first[:name])
+    secondary_color = types.second ? color_for_type(types.second[:name]) : primary_color
+
+    "background: linear-gradient(to right, #{primary_color}, #{secondary_color});"
   end
 end

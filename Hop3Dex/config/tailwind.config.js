@@ -15,7 +15,7 @@ module.exports = {
       colors: {
         'red-500': '#f56565',
         'blue-500': '#4299e1',
-        'green-500': '#48bb78',
+        'custom-plante': '#3fa129',
         'yellow-500': '#ecc94b',
         'purple-500': '#9f7aea',
         'blue-300': '#63b3ed',
@@ -23,6 +23,8 @@ module.exports = {
         'gray-800': '#2d3748',
         'pink-400': '#ed64a6',
         'gray-200': '#e2e8f0',
+        'custom-insecte': '#91a119',
+        'custom-normal': '#9fa19f',
       },
     },
   },
