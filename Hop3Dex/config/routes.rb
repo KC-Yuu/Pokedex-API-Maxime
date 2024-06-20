@@ -5,4 +5,6 @@ Rails.application.routes.draw do
     end
   end
   root 'pokemons#index'
+
+  get 'search', to: 'pokemons#search'
 end
