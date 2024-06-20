@@ -1,13 +1,10 @@
-document.addEventListener('DOMContentLoaded', function() {
-  function stopPropagationForCheckboxes() {
-    document.querySelectorAll('input[type="checkbox"]').forEach(function(checkbox) {
-      checkbox.addEventListener('click', function(event) {
-        event.stopPropagation();
-      });
-    });
-  }
+document.addEventListener("DOMContentLoaded", () => {
+  const exportForm = document.getElementById("export-form");
+  const pokemonIdsField = document.getElementById("pokemon_ids_field");
 
-  stopPropagationForCheckboxes();
-
-  document.addEventListener('ajaxComplete', stopPropagationForCheckboxes);
+  exportForm.addEventListener("submit", (event) => {
+    const checkboxes = document.querySelectorAll("input[name='pokemon_ids[]']:checked");
+    const selectedIds = Array.from(checkboxes).map(checkbox => checkbox.value);
+    pokemonIdsField.value = selectedIds.join(",");
+  });
 });

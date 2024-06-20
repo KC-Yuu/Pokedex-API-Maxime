@@ -19,7 +19,7 @@ class PokemonsController < ApplicationController
 
   def export
     if params[:pokemon_ids].present?
-      selected_ids = params[:pokemon_ids].map(&:to_i)
+      selected_ids = params[:pokemon_ids].split(',').map(&:to_i)
       @pokemons = fetch_pokemons.select { |pokemon| selected_ids.include?(pokemon[:pokedex_id]) }
       csv_data = generate_csv(@pokemons)
 
@@ -30,6 +30,7 @@ class PokemonsController < ApplicationController
       redirect_to pokemons_path, alert: "Veuillez sélectionner au moins un Pokémon pour l'exportation."
     end
   end
+
 
   private
 
@@ -65,4 +66,3 @@ class PokemonsController < ApplicationController
     render :index
   end
 end
-
