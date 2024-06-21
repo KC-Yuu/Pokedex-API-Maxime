@@ -10,6 +10,15 @@ class PokemonsController < ApplicationController
     @pokemons = fetch_pokemons
     @pokemon_types = fetch_pokemon_types
 
+    if params[:generation].blank?
+      params[:generation] = "1"
+    end
+
+    if params[:generation] != "all"
+      generation = params[:generation].to_i
+      @pokemons = @pokemons.select { |pokemon| pokemon[:generation] == generation }
+    end
+
     if params[:query].present?
       query = params[:query].downcase
       @pokemons = @pokemons.select { |pokemon| pokemon.dig(:name, :fr).downcase.include?(query) }
@@ -60,12 +69,12 @@ class PokemonsController < ApplicationController
 
   private
 
-  # Méthode pour récupérer la liste des Pokémon de la première génération.
+  # Méthode pour récupérer la liste des Pokémon de toutes les générations.
   def fetch_pokemons
     response = HTTParty.get('https://tyradex.vercel.app/api/v1/pokemon')
-    all_pokemons = JSON.parse(response.body, symbolize_names: true)
-    all_pokemons.select { |pokemon| pokemon[:generation] == 1 }
+    JSON.parse(response.body, symbolize_names: true)
   end
+
 
   # Méthode pour récupérer les informations d'un Pokémon en fonction de son ID.
   def fetch_pokemon(id)
@@ -73,6 +82,7 @@ class PokemonsController < ApplicationController
     JSON.parse(response.body, symbolize_names: true)
   end
 
+  # Méthode pour récupérer la liste des types de Pokémon.
   def fetch_pokemon_types
     pokemons = fetch_pokemons
     types = pokemons.map { |pokemon| pokemon[:types] }.flatten.compact.uniq
