@@ -1,4 +1,5 @@
 module PokemonsHelper
+  # Permet de générer un background color en fonction du type du Pokémon.
   def color_for_type(type)
     case type.downcase
     when 'feu'
@@ -40,6 +41,7 @@ module PokemonsHelper
     end
   end
 
+  # Permet de prendre en compte les deux types du Pokémon pour générer un background color.
   def gradient_background_for_types(types)
     return 'background: #e2e8f0;' if types.nil? || types.empty?
 
@@ -49,6 +51,7 @@ module PokemonsHelper
     "background: linear-gradient(to right, #{primary_color}, #{secondary_color});"
   end
 
+  # Permet d'attribuer l'icon du type en fonction du nom de la résistance.
   def type_image(type_name)
     type_images = {
       "Normal" => "https://raw.githubusercontent.com/Yarkis01/TyraDex/images/types/normal.png",
@@ -73,4 +76,15 @@ module PokemonsHelper
     type_images[type_name] || ""
   end
 
+  def sprite_url(pokemon_id, type = :regular)
+    base_url = "https://raw.githubusercontent.com/Yarkis01/TyraDex/images/sprites"
+    case type
+    when :regular
+      "#{base_url}/#{pokemon_id}/regular.png"
+    when :shiny
+      "#{base_url}/#{pokemon_id}/shiny.png"
+    else
+      "#{base_url}/#{pokemon_id}/regular.png"
+    end
+  end
 end

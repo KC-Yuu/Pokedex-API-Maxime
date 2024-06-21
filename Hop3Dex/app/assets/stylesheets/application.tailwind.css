@@ -2,6 +2,13 @@
 @tailwind components;
 @tailwind utilities;
 
+
+@layer utilities {
+  .hide-overflow-y {
+    overflow-y: hidden;
+  }
+}
+
 /*
 
 @layer components {
