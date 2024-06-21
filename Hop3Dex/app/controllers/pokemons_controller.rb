@@ -43,6 +43,15 @@ class PokemonsController < ApplicationController
     end
 
     @selected_pokemons = session[:selected_pokemons]
+
+    if params[:per_page] == 'all'
+      @paginated_pokemons = @pokemons
+      @is_all = true
+    else
+      per_page = (params[:per_page] || 21).to_i
+      @paginated_pokemons = Kaminari.paginate_array(@pokemons).page(params[:page]).per(per_page)
+      @is_all = false
+    end
   end
 
   # Cette méthode permet de récupérer les informations d'un Pokémon en fonction de son ID et de les stocker dans une variable d'instance.

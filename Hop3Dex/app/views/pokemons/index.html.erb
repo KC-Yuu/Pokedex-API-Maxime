@@ -2,18 +2,28 @@
   <%= image_tag("Logo-Hop3Dex.png", alt: "Logo", class: "w-80 h-auto mx-auto") %>
 </div>
 
-<% if params[:type].present? %>
-  <div class="text-lg font-semibold mb-4">
-    Résultat du filtrage par type : <%= params[:type] %>
+<%= form_with url: pokemons_path, method: :get, local: true, class: 'mb-4' do %>
+  <div class="flex items-center space-x-4 justify-center">
+    <%= label_tag :per_page, "Résultats par page :", class: 'text-sm font-medium text-gray-700' %>
+    <%= select_tag :per_page, options_for_select([12, 21, 51, 100, ['Tout afficher', 'all']], selected: params[:per_page] || 21), class: 'rounded-md border-gray-300 shadow-sm px-8 py-2' %>
+    <%= hidden_field_tag :generation, params[:generation] %>
+    <%= hidden_field_tag :type, params[:type] %>
+    <%= hidden_field_tag :query, params[:query] %>
+    <%= hidden_field_tag :sort_order, params[:sort_order] %>
+    <%= submit_tag "Appliquer", class: 'inline-flex items-center px-4 py-2 border border-transparent rounded-md shadow-sm text-sm font-medium text-white bg-yellow-600 hover:bg-yellow-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-yellow-500' %>
   </div>
 <% end %>
 
-<%= form_with url: export_pokemons_path(format: :csv), method: :get, local: true, class: "container mb-20 w-full mx-auto" do %>
-  <div class="overflow-x-auto w-full">
-    <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
-      <% @pokemons.each do |pokemon| %>
-        <%= render partial: 'shared/cardPokemon', locals: { pokemon: pokemon } %>
-      <% end %>
-    </div>
+<div class="overflow-x-auto w-full">
+  <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
+    <% @paginated_pokemons.each do |pokemon| %>
+      <%= render partial: 'shared/cardPokemon', locals: { pokemon: pokemon } %>
+    <% end %>
+  </div>
+</div>
+
+<% unless @is_all %>
+  <div class="mt-4 flex justify-center mb-4">
+    <%= paginate @paginated_pokemons, params: { generation: params[:generation], type: params[:type], query: params[:query], sort_order: params[:sort_order], per_page: params[:per_page] } %>
   </div>
 <% end %>
