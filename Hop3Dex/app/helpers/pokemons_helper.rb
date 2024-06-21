@@ -75,7 +75,8 @@ module PokemonsHelper
     }
     type_images[type_name] || ""
   end
-
+  
+  # Permet de générer l'url du sprite du Pokémon en fonction de son ID et du type de sprite.
   def sprite_url(pokemon_id, type = :regular)
     base_url = "https://raw.githubusercontent.com/Yarkis01/TyraDex/images/sprites"
     case type

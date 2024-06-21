@@ -2,21 +2,34 @@ require 'csv'
 require 'httparty'
 
 class PokemonsController < ApplicationController
+
+  # Méthode pour récupérer la liste des Pokémon de la première génération et les stocker dans une variable d'instance.
   def index
     session[:selected_pokemons] ||= []
+
+    @pokemons = fetch_pokemons
+    @pokemon_types = fetch_pokemon_types
+
     if params[:query].present?
       query = params[:query].downcase
-      @pokemons = fetch_pokemons.select { |pokemon| pokemon.dig(:name, :fr).downcase.include?(query) }
-    else
-      @pokemons = fetch_pokemons
+      @pokemons = @pokemons.select { |pokemon| pokemon.dig(:name, :fr).downcase.include?(query) }
     end
+
+    if params[:type].present?
+      type = params[:type].downcase
+      @pokemons = @pokemons.select { |pokemon| pokemon[:types] && pokemon[:types].any? { |t| t[:name].downcase == type } }
+    end
+
     @selected_pokemons = session[:selected_pokemons]
   end
 
+  # Cette méthode permet de récupérer les informations d'un Pokémon en fonction de son ID et de les stocker dans une variable d'instance.
   def show
     @pokemon = fetch_pokemon(params[:id])
+    @pokemon_types = fetch_pokemon_types
   end
 
+  # Cette méthode permet d'ajouter un Pokémon à la liste des Pokémon sélectionnés.
   def export
     if params[:pokemon_ids].present?
       selected_ids = params[:pokemon_ids].split(',').map(&:to_i)
@@ -34,17 +47,26 @@ class PokemonsController < ApplicationController
 
   private
 
+  # Méthode pour récupérer la liste des Pokémon de la première génération.
   def fetch_pokemons
     response = HTTParty.get('https://tyradex.vercel.app/api/v1/pokemon')
     all_pokemons = JSON.parse(response.body, symbolize_names: true)
     all_pokemons.select { |pokemon| pokemon[:generation] == 1 }
   end
 
+  # Méthode pour récupérer les informations d'un Pokémon en fonction de son ID.
   def fetch_pokemon(id)
     response = HTTParty.get("https://tyradex.vercel.app/api/v1/pokemon/#{id}")
     JSON.parse(response.body, symbolize_names: true)
   end
 
+  def fetch_pokemon_types
+    pokemons = fetch_pokemons
+    types = pokemons.map { |pokemon| pokemon[:types] }.flatten.compact.uniq
+    types.map { |type| type[:name] }.sort
+  end
+
+  # Méthode pour générer un fichier CSV à partir des informations des Pokémon sélectionnés.
   def generate_csv(pokemons)
     CSV.generate(headers: true, col_sep: ';') do |csv|
       csv << ['Pokedex ID', 'Name', 'Sprite Regular', 'Sprite Shiny', 'Types', 'Evolution IDs']
@@ -61,8 +83,15 @@ class PokemonsController < ApplicationController
     end
   end
 
+  # Méthode pour rechercher un Pokémon en fonction de son nom.
   def search
     @pokemons = Pokemon.where('name LIKE ?', "%#{params[:query]}%")
     render :index
+  end
+
+  # Méthode pour filtrer les Pokémon en fonction des paramètres de recherche.
+  def filter_pokemons(pokemons)
+    pokemons = pokemons.where(type: params[:type]) if params[:type].present?
+    pokemons
   end
 end
