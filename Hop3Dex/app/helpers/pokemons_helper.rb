@@ -75,7 +75,7 @@ module PokemonsHelper
     }
     type_images[type_name] || ""
   end
-  
+
   # Permet de générer l'url du sprite du Pokémon en fonction de son ID et du type de sprite.
   def sprite_url(pokemon_id, type = :regular)
     base_url = "https://raw.githubusercontent.com/Yarkis01/TyraDex/images/sprites"
@@ -87,5 +87,21 @@ module PokemonsHelper
     else
       "#{base_url}/#{pokemon_id}/regular.png"
     end
+  end
+
+  def generation_text
+    generation_map = {
+      "1" => "Première génération",
+      "2" => "Deuxième génération",
+      "3" => "Troisième génération",
+      "4" => "Quatrième génération",
+      "5" => "Cinquième génération",
+      "6" => "Sixième génération",
+      "7" => "Septième génération",
+      "8" => "Huitième génération",
+      "9" => "Neuvième génération",
+      "all" => "Toutes les générations"
+    }
+    generation_map[params[:generation]] || "Première génération"
   end
 end
