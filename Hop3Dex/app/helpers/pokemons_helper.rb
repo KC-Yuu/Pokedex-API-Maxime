@@ -36,6 +36,8 @@ module PokemonsHelper
       '#afa981'
     when 'acier'
       '#60a1b8'
+    when 'ténèbres'
+      '#50413f'
     else
       '#e2e8f0'
     end

@@ -75,7 +75,6 @@ class PokemonsController < ApplicationController
     end
   end
 
-
   private
 
   # Méthode pour récupérer la liste des Pokémon de toutes les générations.
@@ -103,13 +102,15 @@ class PokemonsController < ApplicationController
     CSV.generate(headers: true, col_sep: ';') do |csv|
       csv << ['Pokedex ID', 'Name', 'Sprite Regular', 'Sprite Shiny', 'Types', 'Evolution IDs']
       pokemons.each do |pokemon|
+        types = (pokemon[:types] || []).map { |type| type[:name] }.join(',')
+        evolution_ids = (pokemon.dig(:evolution, :next) || []).map { |evo| evo[:pokedex_id] }.join(',')
         csv << [
           pokemon[:pokedex_id],
           pokemon.dig(:name, :fr),
           pokemon.dig(:sprites, :regular),
           pokemon.dig(:sprites, :shiny),
-          (pokemon[:types] || []).map { |type| type[:name] }.join(','),
-          (pokemon.dig(:evolution, :next) || []).map { |evo| evo[:pokedex_id] }.join(',')
+          types,
+          evolution_ids
         ]
       end
     end
