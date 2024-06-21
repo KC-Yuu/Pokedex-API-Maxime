@@ -2,3 +2,4 @@
 import "@hotwired/turbo-rails"
 import "controllers"
 import './checkbox_click';
+import "./menu"
