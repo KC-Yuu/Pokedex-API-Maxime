@@ -20,6 +20,19 @@ class PokemonsController < ApplicationController
       @pokemons = @pokemons.select { |pokemon| pokemon[:types] && pokemon[:types].any? { |t| t[:name].downcase == type } }
     end
 
+    if params[:sort_order].present? && ['asc', 'desc'].include?(params[:sort_order])
+      if params[:sort_order] == 'asc'
+        @pokemons = @pokemons.sort_by { |pokemon| pokemon[:pokedex_id] }
+      else
+        @pokemons = @pokemons.sort_by { |pokemon| pokemon[:pokedex_id] }.reverse
+      end
+    end
+
+    if params[:pokedex_id].present?
+      pokedex_id = params[:pokedex_id].to_i
+      @pokemons = @pokemons.select { |pokemon| pokemon[:pokedex_id] == pokedex_id }
+    end
+
     @selected_pokemons = session[:selected_pokemons]
   end
 
@@ -92,6 +105,7 @@ class PokemonsController < ApplicationController
   # Méthode pour filtrer les Pokémon en fonction des paramètres de recherche.
   def filter_pokemons(pokemons)
     pokemons = pokemons.where(type: params[:type]) if params[:type].present?
+    pokemons = pokemons.where(pokedex_id: params[:pokedex_id]) if params[:pokedex_id].present?
     pokemons
   end
 end
