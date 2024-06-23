@@ -8,6 +8,7 @@
 
 <p align="center">
   <img src="https://img.shields.io/badge/Made%20with-Ruby%20on%20Rails-red" alt="Made with Ruby on Rails" />
+  <img src="https://img.shields.io/badge/Made%20with-Tailwind%20CSS-blue" alt="Made with Tailwind CSS" />
 </p>
 
 ## Contexte du Projet
@@ -35,7 +36,7 @@ L'application doit être réalisée en Ruby on Rails et peut utiliser toutes les
 ![Profil](https://i.goopics.net/ymhs2p.png)
 
 ## Prérequis
-
+Le site a été developpé avec la version 3.3.3 de Ruby on Rails, il est donc nécessaire d'utiliser cette version pour pouvoir lancer le site :
 - [Ruby on Rails 3.3.3](https://rubyonrails.org/)
 
 ## Installation
@@ -44,7 +45,7 @@ L'application doit être réalisée en Ruby on Rails et peut utiliser toutes les
 
 Pour commencer, clonez le dépôt en utilisant la commande suivante :
 ```bash
-git clone https://github.com/Maxime-Boucher/Pokedex-API-Maxime.git
+git clone https://github.com/KC-Yuu/Pokedex-API-Maxime.git
 ```
 
 ### Configuration
@@ -53,10 +54,10 @@ git clone https://github.com/Maxime-Boucher/Pokedex-API-Maxime.git
 
 1. Exécutez le script de configuration à la racine du projet :
 ```bash
-bash ./setup.sh
+./setup.sh
 ```
 
-2. Une fois que le script à terminé de s'executer, lancez le serveur Rails :
+2. Une fois que vous verrez le message du script "Setup terminé". Vous pourrez lancer le serveur Rails à l'aide de cette commande :
 ```bash
 rails server
 ```
@@ -67,15 +68,16 @@ rails server
 
 1. Exécutez le script de configuration à la racine du projet :
 ```bash
-bash .\setup.bat
+.\setup.bat
 ```
 
-2. Une fois que le script à terminé de s'executer, lancez le serveur Rails :
+2. Une fois que vous verrez le message du script "Setup terminé". Vous pourrez lancer le serveur Rails à l'aide de cette commande :
 ```bash
 rails server
 ```
 
-3. Accédez à l'application via [localhost:3000](http://localhost:3000) ou [127.0.0.1:3000](http://127.0.0.1:3000). **Notez qu'il est fortement possible que vous rencontriez une erreur lors du premier chargement de la page (en raison des permissions de fichiers sous Windows). Si cela se produit, rafraîchissez simplement la page pour résoudre le problème.**
+3. Accédez à l'application via [localhost:3000](http://localhost:3000) ou [127.0.0.1:3000](http://127.0.0.1:3000).
+/!\ **Notez qu'il est fortement possible que vous rencontriez une erreur lors du premier chargement de la page (en raison des permissions de fichiers sous Windows). Si cela se produit, rafraîchissez simplement la page pour résoudre le problème.** /!\
 
 ## Bonus
 
@@ -84,3 +86,4 @@ rails server
 - **Système de filtrage** : Ajout d'un système de filtrage pour filtrer les Pokémon par génération/types.
 - **Pagination** : Implémentation de la pagination pour la liste des Pokémon.
 - **Interface utilisateur améliorée** : Ajout de styles CSS à l'aide de Tailwind pour une meilleure expérience utilisateur.
+- **Responsivité** : Ajout de la responsivité sur l'ensemble du site pour une meilleure expérience utilisateur.
