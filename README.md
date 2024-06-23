@@ -43,7 +43,7 @@ Le site a été developpé avec la version 3.3.3 de Ruby on Rails, il est donc n
 
 ### Cloner le dépôt
 
-Pour commencer, clonez le dépôt en utilisant la commande suivante :
+Pour commencer, clonez le dépôt en utilisant la commande suivante dans votre terminal :
 ```bash
 git clone https://github.com/KC-Yuu/Pokedex-API-Maxime.git
 ```
@@ -52,7 +52,7 @@ git clone https://github.com/KC-Yuu/Pokedex-API-Maxime.git
 
 #### Pour Linux
 
-1. Exécutez le script de configuration à la racine du projet :
+1. Exécutez le script de configuration du projet en ouvrant un terminal à la racine du projet, afin d'installer les gems et les dépendances du projet :
 ```bash
 ./setup.sh
 ```
@@ -62,11 +62,11 @@ git clone https://github.com/KC-Yuu/Pokedex-API-Maxime.git
 rails server
 ```
 
-3. Accédez à l'application via [localhost:3000](http://localhost:3000) ou [127.0.0.1:3000](http://127.0.0.1:3000).
+3. Une fois le server démarré vous pouvez accéder au site via [localhost:3000](http://localhost:3000) ou [127.0.0.1:3000](http://127.0.0.1:3000).
 
 #### Pour Windows
 
-1. Exécutez le script de configuration à la racine du projet :
+1. Exécutez le script de configuration du projet en ouvrant un terminal à la racine du projet, afin d'installer les gems et les dépendances du projet :
 ```bash
 .\setup.bat
 ```
@@ -76,8 +76,8 @@ rails server
 rails server
 ```
 
-3. Accédez à l'application via [localhost:3000](http://localhost:3000) ou [127.0.0.1:3000](http://127.0.0.1:3000).
-/!\ **Notez qu'il est fortement possible que vous rencontriez une erreur lors du premier chargement de la page (en raison des permissions de fichiers sous Windows). Si cela se produit, rafraîchissez simplement la page pour résoudre le problème.** /!\
+3. Une fois le server démarré vous pouvez accéder au site via [localhost:3000](http://localhost:3000) ou [127.0.0.1:3000](http://127.0.0.1:3000).
+/!\ **Notez qu'il est fortement probable que vous rencontriez une erreur lors du premier chargement de la page (en raison des permissions de fichiers sous Windows). Si cela se produit, rafraîchissez simplement la page pour résoudre le problème.** /!\
 
 ## Bonus
 
@@ -87,3 +87,7 @@ rails server
 - **Pagination** : Implémentation de la pagination pour la liste des Pokémon.
 - **Interface utilisateur améliorée** : Ajout de styles CSS à l'aide de Tailwind pour une meilleure expérience utilisateur.
 - **Responsivité** : Ajout de la responsivité sur l'ensemble du site pour une meilleure expérience utilisateur.
+
+## Contribueur
+
+### Maxime : https://github.com/KC-Yuu
