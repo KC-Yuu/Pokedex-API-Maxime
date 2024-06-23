@@ -2,7 +2,6 @@ require 'csv'
 require 'httparty'
 
 class PokemonsController < ApplicationController
-
   # Méthode pour récupérer la liste des Pokémon de la première génération et les stocker dans une variable d'instance.
   def index
     session[:selected_pokemons] ||= []
