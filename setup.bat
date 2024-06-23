@@ -7,5 +7,8 @@ rmdir /s /q tmp\cache
 REM Install dependencies
 call bundle install
 
-echo Setup complete. You can now start the server with 'rails server'.
+REM Compile CSS with Tailwind
+call rails tailwindcss:build
+
+echo Setup terminé. Vous pouvez maintenant démarrer le serveur avec 'rails server'.
 pause

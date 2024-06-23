@@ -9,4 +9,7 @@ rm -rf tmp/cache
 # Install dependencies
 bundle install
 
-echo "Setup complete. You can now start the server with 'rails server'."
+# Compile CSS with Tailwind
+rails tailwindcss:build
+
+echo "Setup terminé. Vous pouvez maintenant démarrer le serveur avec 'rails server'."
