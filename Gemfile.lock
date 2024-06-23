@@ -262,6 +262,7 @@ PLATFORMS
 
 DEPENDENCIES
   bootsnap
+  bundler (~> 2.5.13)
   capybara
   debug
   error_highlight (>= 0.4.0)

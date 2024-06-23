@@ -76,3 +76,5 @@ gem "httparty", "~> 0.22.0"
 gem "kaminari", "~> 1.2"
 
 gem "psych", "~> 4.0"
+
+gem "bundler", "~> 2.5.13"
