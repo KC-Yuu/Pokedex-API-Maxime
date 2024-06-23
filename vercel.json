@@ -6,13 +6,12 @@
   "routes": [
     { "src": "/(.*)", "dest": "config.ru" }
   ],
-  "builds": [
-    {
-      "src": "build.sh",
-      "use": "@vercel/static-build",
-      "config": {
-        "distDir": "public"
-      }
+  "build": {
+    "env": {
+      "BUNDLE_DEPLOYMENT": "false"
+    },
+    "commands": {
+      "build": "bundle config set path 'vendor/bundle' && bundle install && bundle exec rails assets:precompile"
     }
-  ]
+  }
 }
