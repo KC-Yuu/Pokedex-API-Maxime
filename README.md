@@ -1,8 +1,14 @@
-# Hop3Dex
+<p align="center">
+  <img src="https://i.goopics.net/8jhjnj.png" alt="Logo" />
+</p>
 
-![Logo](https://i.goopics.net/8jhjnj.png)
+<p align="center">
+  Bienvenue dans le projet Pokedex API Maxime. Ce guide vous aidera à configurer et lancer le projet sur votre machine.
+</p>
 
-Bienvenue sur le projet Hop3Dex. Ce guide vous aidera à configurer et lancer le projet sur votre machine.
+<p align="center">
+  <img src="https://img.shields.io/badge/Made%20with-Ruby%20on%20Rails-red" alt="Made with Ruby on Rails" />
+</p>
 
 ## Contexte du Projet
 
