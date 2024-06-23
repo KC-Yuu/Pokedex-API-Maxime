@@ -81,9 +81,11 @@ rails server
 
 ## Bonus
 
+- **Couleur du Background** : Les couleurs des backgrounds des pokémons sont générées en fonction de leur types.
 - **Système de recherche** : Ajout d'une fonctionnalité de recherche pour filtrer les Pokémon par nom.
 - **Ajout des détails du Pokémon** : Ajout d'une page détaillée pour chaque Pokémon avec les informations complètes.
 - **Système de filtrage** : Ajout d'un système de filtrage pour filtrer les Pokémon par génération/types.
+- **Système de tri** : Ajout d'un système de tri pour trier les Pokémon par ordre croissant/décroissant.
 - **Pagination** : Implémentation de la pagination pour la liste des Pokémon.
 - **Interface utilisateur améliorée** : Ajout de styles CSS à l'aide de Tailwind pour une meilleure expérience utilisateur.
 - **Responsivité** : Ajout de la responsivité sur l'ensemble du site pour une meilleure expérience utilisateur.
