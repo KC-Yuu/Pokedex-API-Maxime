@@ -36,7 +36,7 @@ L'application doit être réalisée en Ruby on Rails et peut utiliser toutes les
 ![Profil](https://i.goopics.net/ymhs2p.png)
 
 ## Prérequis
-Le site a été developpé avec la version 3.3.3 de Ruby on Rails, il est donc nécessaire d'utiliser cette version pour pouvoir lancer le site :
+Le site a été développé avec Ruby 3.1.2 et Rails 7.0.4. Assurez-vous d'utiliser ces versions pour éviter les problèmes de compatibilité.
 - [Ruby on Rails 3.3.3](https://rubyonrails.org/)
 
 ## Installation
@@ -52,26 +52,31 @@ git clone https://github.com/KC-Yuu/Pokedex-API-Maxime.git
 
 #### Pour Linux
 
-1. Exécutez le script de configuration du projet en ouvrant un terminal à la racine du projet, afin d'installer les gems et les dépendances du projet :
+1. Ouvrez un terminal à la racine du projet et donnez les droits d'exécution au script "setup.sh" :
+```bash
+chmod +x setup.sh
+```
+
+2. Exécutez le script de configuration du projet pour installer les gems et les dépendances :
 ```bash
 ./setup.sh
 ```
 
-2. Une fois que vous verrez le message du script "Setup terminé". Vous pourrez lancer le serveur Rails à l'aide de cette commande :
+3. Une fois le message "Setup terminé" affiché, lancez le serveur Rails :
 ```bash
 rails server
 ```
 
-3. Une fois le server démarré vous pouvez accéder au site via [localhost:3000](http://localhost:3000) ou [127.0.0.1:3000](http://127.0.0.1:3000).
+4. Une fois le server démarré vous pouvez accéder au site via [localhost:3000](http://localhost:3000) ou [127.0.0.1:3000](http://127.0.0.1:3000).
 
 #### Pour Windows
 
-1. Exécutez le script de configuration du projet en ouvrant un terminal à la racine du projet, afin d'installer les gems et les dépendances du projet :
+1. Exécutez le script de configuration du projet pour installer les gems et les dépendances :
 ```bash
 .\setup.bat
 ```
 
-2. Une fois que vous verrez le message du script "Setup terminé". Vous pourrez lancer le serveur Rails à l'aide de cette commande :
+2. Une fois le message "Setup terminé" affiché, lancez le serveur Rails :
 ```bash
 rails server
 ```
