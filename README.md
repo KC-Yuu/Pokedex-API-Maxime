@@ -36,7 +36,7 @@ L'application doit être réalisée en Ruby on Rails et peut utiliser toutes les
 ![Profil](https://i.goopics.net/ymhs2p.png)
 
 ## Prérequis
-Le site a été développé avec Ruby 3.3.3 et Rails 7.0.4. Assurez-vous d'utiliser ces versions pour éviter les problèmes de compatibilité.
+Le site a été développé avec Ruby 3.3.3 et Rails 7.1.3.4. Assurez-vous d'utiliser ces versions pour éviter les problèmes de compatibilité.
 - [Ruby on Rails 3.3.3](https://rubyonrails.org/)
 
 ## Installation
