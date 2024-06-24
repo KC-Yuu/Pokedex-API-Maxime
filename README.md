@@ -3,7 +3,7 @@
 </p>
 
 <p align="center">
-  Bienvenue dans le projet Pokedex API Maxime. Ce guide vous aidera à configurer et lancer le projet sur votre machine.
+  Bienvenue dans le projet Hop3Dex. Ce guide vous aidera à configurer et lancer le projet sur votre machine.
 </p>
 
 <p align="center">
@@ -36,7 +36,7 @@ L'application doit être réalisée en Ruby on Rails et peut utiliser toutes les
 ![Profil](https://i.goopics.net/ymhs2p.png)
 
 ## Prérequis
-Le site a été développé avec Ruby 3.1.2 et Rails 7.0.4. Assurez-vous d'utiliser ces versions pour éviter les problèmes de compatibilité.
+Le site a été développé avec Ruby 3.3.3 et Rails 7.0.4. Assurez-vous d'utiliser ces versions pour éviter les problèmes de compatibilité.
 - [Ruby on Rails 3.3.3](https://rubyonrails.org/)
 
 ## Installation
@@ -92,6 +92,7 @@ rails server
 - **Système de filtrage** : Ajout d'un système de filtrage pour filtrer les Pokémon par génération/types.
 - **Système de tri** : Ajout d'un système de tri pour trier les Pokémon par ordre croissant/décroissant.
 - **Pagination** : Implémentation de la pagination pour la liste des Pokémon.
+- **Choix du nombre de résultat par page** : L'utilisateur peut filtrer le nombre de résultat afficher par page (12/21/51/100/all)
 - **Interface utilisateur améliorée** : Ajout de styles CSS à l'aide de Tailwind pour une meilleure expérience utilisateur.
 - **Responsivité** : Ajout de la responsivité sur l'ensemble du site pour une meilleure expérience utilisateur.
 
